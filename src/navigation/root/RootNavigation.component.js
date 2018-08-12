@@ -5,7 +5,7 @@ import {createStackNavigator} from 'react-navigation';
 import PropTypes from 'prop-types';
 import type {Element as ReactElement} from 'react';
 
-import RootRoutes, {ROOT_NAV_PALAPA} from './RootNavigation.routes';
+import RootRoutes, {ROOT_NAV_PALAPA, ROOT_NAV_PRORESULT} from './RootNavigation.routes';
 
 import styles from './RootNavigation.styles';
 
@@ -21,7 +21,7 @@ class RootNavigationComponent extends React.PureComponent<RootNavigationProps, R
 
   componentWillMount() {
     const config = {
-      initialRouteName: ROOT_NAV_PALAPA,
+      initialRouteName: ROOT_NAV_PRORESULT,
       headerMode: 'none',
     };
 
