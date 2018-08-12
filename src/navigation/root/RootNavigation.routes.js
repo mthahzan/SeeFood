@@ -4,6 +4,7 @@ import AboutScreen from '../../modules/about/screens/about/About.screen';
 
 export const ROOT_NAV_PALAPA = 'PalapaScreen';
 export const ROOT_NAV_ABOUT = 'About';
+export const ROOT_NAV_RESULT= 'ResultScreen';
 
 export default {
   [ROOT_NAV_PALAPA]: {
@@ -13,5 +14,9 @@ export default {
   [ROOT_NAV_ABOUT]: {
     screen: AboutScreen,
     path: `/${ROOT_NAV_ABOUT}`,
+  },
+  [ROOT_NAV_RESULT]: {
+    screen: RE,
+    path: `/${ROOT_NAV_RESULT}`,
   },
 }
