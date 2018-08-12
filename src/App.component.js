@@ -1,8 +1,6 @@
 // @flow
 import React from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {RNCamera} from 'react-native-camera';
 import PropTypes from 'prop-types';
 import type {Element as ReactElement} from 'react';
 
