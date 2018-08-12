@@ -5,6 +5,8 @@ import SplashScreen from 'react-native-splash-screen';
 import PropTypes from 'prop-types';
 import type {Element as ReactElement} from 'react';
 
+import RootNavigation from './navigation/root/RootNavigation.component';
+
 import styles from './App.styles';
 
 type AppProps = {};
@@ -24,7 +26,7 @@ class AppComponent extends React.PureComponent<AppProps, AppState> {
   renderContent = (): ReactElement<any> => {
     return (
       <View style={styles.container}>
-        {/* Add your elements here. Make sure you break the renders into clean functions */}
+        <RootNavigation />
       </View>
     );
   }

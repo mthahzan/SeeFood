@@ -10,9 +10,12 @@
     "ios": "react-native run-ios"
   },
   "dependencies": {
+    "add": "2.0.6",
     "react": "16.4.1",
     "react-native": "0.56.0",
-    "react-native-splash-screen": "3.1.1"
+    "react-native-splash-screen": "3.1.1",
+    "react-navigation": "2.11.2",
+    "yarn": "1.9.4"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",
