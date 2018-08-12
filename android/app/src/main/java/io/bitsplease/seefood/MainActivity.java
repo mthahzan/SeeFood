@@ -1,8 +1,21 @@
 package io.bitsplease.seefood;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import com.facebook.react.ReactActivity;
 
+import org.devio.rn.splashscreen.SplashScreen;
+
 public class MainActivity extends ReactActivity {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Show splash screen
+        SplashScreen.show(this);
+    }
 
     /**
      * Returns the name of the main component registered from JavaScript.

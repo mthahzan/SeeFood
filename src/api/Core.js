@@ -1,5 +1,5 @@
 // @flow
-import RNFetchBlob from 'rn-fetch-blob';
+// import RNFetchBlob from 'rn-fetch-blob';
 
 /**
  * API Base URL
@@ -80,21 +80,51 @@ export const GET = async (endpoint: string, params: {[string]: any} | null, head
 };
 
 /**
+ * Make POST request
+ * @param  {string} endpoint The endpoint to call
+ * @param  {object} body     POST body
+ * @param  {object} params   URL params
+ * @param  {object} headers  Headers object
+ * @return {Promise}         POST request promise
+ */
+export const POST = async (
+  endpoint: string, body: {[string]: any} | null, params: {[string]: any} | null, headers: {[string]: any} | null
+): Promise<any> => {
+  // Create the request URL
+  const url: string = `${BASE_URL}/${endpoint}${createURLParams(params)}`;
+  const options: {[string]: any} = {
+    // Request type
+    method: 'POST',
+
+    // Add headers
+    headers: {
+      // Spread the default request headers
+      ...defaultRequestHeaders,
+
+      // Spread the given additional headers
+      ...headers,
+    },
+
+    // Append the requestbody
+    body: JSON.stringify(body || {}),
+  };
+  const response = await fetch(url, options);
+
+  // Handle the response before returning
+  return handleResponseStatus(response);
+};
+
+/**
  * Upload a file
  * @param  {string}       endpoint            Endpoint to POST the file to
  * @param  {string}       base64EncodedImage  Base 64 encoded image
  * @return {Promise<any>}                     File upload POST request
  */
 export const FileUpload = (endpoint: string, base64EncodedImage: string): Promise<any> => {
-  // Create the request URL
-  const url: string = `${BASE_URL}/${endpoint}`;
-  const type = 'POST';
-  const config: {[string]: any} = {
-    'Content-Type' : 'application/octet-stream',
-  };
-  const data = base64EncodedImage;
-  const response = await RNFetchBlob.fetch(type, config, data);
+  const endpoint: string = urlFactory.createPost();
+  const bodyParams = {data: base64EncodedImage};
+  const urlParams = null;
+  const headers = {};
 
-  // Handle the response before returning
-  return handleResponseStatus(response);
-}
+  return POST(endpoint, bodyParams, urlParams, headers);
+};

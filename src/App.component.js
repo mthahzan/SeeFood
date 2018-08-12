@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import {View} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import PropTypes from 'prop-types';
 import type {Element as ReactElement} from 'react';
 
@@ -14,6 +15,10 @@ class AppComponent extends React.PureComponent<AppProps, AppState> {
   
   constructor(props: AppProps) {
     super(props);
+  }
+
+  componentDidMount() {
+    SplashScreen.hide();
   }
 
   renderContent = (): ReactElement<any> => {
