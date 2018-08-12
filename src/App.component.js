@@ -1,12 +1,13 @@
 // @flow
 import React from 'react';
 import SplashScreen from 'react-native-splash-screen';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {RNCamera} from 'react-native-camera';
 import PropTypes from 'prop-types';
 import type {Element as ReactElement} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { RNCamera } from 'react-native-camera';
 
 import RootNavigation from './navigation/root/RootNavigation.component';
+import {IcomoonIconComponent} from './shared/components';
 
 import styles from './App.styles';
 
@@ -26,9 +27,7 @@ class AppComponent extends React.PureComponent<AppProps, AppState> {
 
   renderContent = (): ReactElement<any> => {
     return (
- 
-        <RootNavigation />
- 
+      <RootNavigation />
     );
   }
 
