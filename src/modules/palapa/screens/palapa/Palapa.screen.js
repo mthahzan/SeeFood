@@ -7,6 +7,7 @@ import { RNCamera } from 'react-native-camera';
 import  LinearGradient  from 'react-native-linear-gradient';
  
 import styles from './Palapa.styles';
+import IcomoonComponent from '../../../../shared/components/icomoonIcon/IcomoonIcon.component';
 
 type PalapaProps = {};
 type PalapaState = {};
@@ -42,11 +43,11 @@ class PalapaScreen extends React.PureComponent<PalapaProps, PalapaState> {
                   </View>
                   <View style={{flex:1}}>             
                   <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
-                    <Text style={{ fontSize: 14 }}> See Food </Text>
+                    <IcomoonComponent name="camera" size={30} color='black'  />
                   </TouchableOpacity>
                   </View>        
                   <View style={styles.flashContainer}>
-                    <Text style={{ marginTop:3, color:'white', marginRight:3}}>FLASH</Text>
+                    <IcomoonComponent name="flash" size={25} color='white'  />
                     <Switch value={this.state.camFlash} onValueChange={this.flashValueChanged}/>
                   </View>
                 </View>

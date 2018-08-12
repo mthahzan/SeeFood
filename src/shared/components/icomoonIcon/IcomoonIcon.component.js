@@ -18,7 +18,7 @@ type IcomoonComponentProps = {
 };
 type IcomoonComponentState = {};
 
-class IcomoonComponentComponent extends React.PureComponent<IcomoonComponentProps, IcomoonComponentState> {
+class IcomoonComponent extends React.PureComponent<IcomoonComponentProps, IcomoonComponentState> {
   static defaultProps: any
 
   constructor(props: IcomoonComponentProps) {
@@ -42,16 +42,16 @@ class IcomoonComponentComponent extends React.PureComponent<IcomoonComponentProp
   }
 }
 
-IcomoonComponentComponent.propTypes = {
+IcomoonComponent.propTypes = {
   color: PropTypes.string,
   name: PropTypes.string.isRequired,
   size: PropTypes.number,
 };
 
-IcomoonComponentComponent.defaultProps = {
+IcomoonComponent.defaultProps = {
   color: 'black',
   size: 10,
 };
 
-export default IcomoonComponentComponent;
+export default IcomoonComponent;
 
