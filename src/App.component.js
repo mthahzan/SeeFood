@@ -26,9 +26,9 @@ class AppComponent extends React.PureComponent<AppProps, AppState> {
 
   renderContent = (): ReactElement<any> => {
     return (
-      <View style={styles.container}>
+ 
         <RootNavigation />
-      </View>
+ 
     );
   }
 

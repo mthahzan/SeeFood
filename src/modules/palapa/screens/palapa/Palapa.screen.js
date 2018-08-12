@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type {Element as ReactElement} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Switch } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 import styles from './Palapa.styles';
@@ -15,28 +15,44 @@ class PalapaScreen extends React.PureComponent<PalapaProps, PalapaState> {
 
   constructor(props: PalapaProps) {
     super(props);
+    this.state = {
+      camFlash:false
+    }
   }
 
   renderContent = (): ReactElement<any> => {
     return (
-      <RNCamera
-      style={styles.preview}
-      type={RNCamera.Constants.Type.back}
-      flashMode={RNCamera.Constants.FlashMode.on}
-      permissionDialogTitle={'Permission to use camera'}
-      permissionDialogMessage={'We need your permission to use your camera phone'}
-    >
-      {({ camera, status }) => {
-        if (status !== 'READY') return <View />;
-        return (
-          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-            <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
-              <Text style={{ fontSize: 14 }}> SNAP </Text>
-            </TouchableOpacity>
-          </View>
-        );
-      }}
-    </RNCamera>
+      <View style={styles.container}>
+        <RNCamera
+        style={styles.preview}
+        type={RNCamera.Constants.Type.back}
+        flashMode={this.state.camFlash ? RNCamera.Constants.FlashMode.on : RNCamera.Constants.FlashMode.off}
+        permissionDialogTitle={'Permission to use camera'}
+        permissionDialogMessage={'We need your permission to use your camera phone'}
+      >
+        {({ camera, status }) => {
+          if (status !== 'READY') return <View />;
+          return (
+            <View style={{ width:'100%', flexDirection: 'row', justifyContent: 'center'}}>
+            <View style={{backgroundColor: 'red', width:'100%',flexDirection: 'row'}}>
+              <View style={styles.flashContainer}>
+                
+              </View>
+              <View style={{flex:1}}>             
+              <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
+                <Text style={{ fontSize: 14 }}> See Food </Text>
+              </TouchableOpacity>
+              </View>        
+              <View style={styles.flashContainer}>
+                <Text style={{ marginTop:3, color:'white', marginRight:3}}>FLASH</Text>
+                <Switch value={this.state.camFlash} onValueChange={this.flashValueChanged}/>
+              </View>
+            </View>
+            </View>
+          );
+        }}
+      </RNCamera>
+    </View>
     );
   }
 
@@ -44,6 +60,12 @@ class PalapaScreen extends React.PureComponent<PalapaProps, PalapaState> {
     const content = this.renderContent();
 
     return content;
+  }
+
+  flashValueChanged = (val) => {
+    this.setState({
+      camFlash: val
+    });
   }
 
   takePicture = async function(camera) {
