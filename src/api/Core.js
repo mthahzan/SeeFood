@@ -1,5 +1,4 @@
 // @flow
-// import RNFetchBlob from 'rn-fetch-blob';
 
 /**
  * API Base URL
@@ -112,19 +111,4 @@ export const POST = async (
 
   // Handle the response before returning
   return handleResponseStatus(response);
-};
-
-/**
- * Upload a file
- * @param  {string}       endpoint            Endpoint to POST the file to
- * @param  {string}       base64EncodedImage  Base 64 encoded image
- * @return {Promise<any>}                     File upload POST request
- */
-export const FileUpload = (endpoint: string, base64EncodedImage: string): Promise<any> => {
-  const endpoint: string = urlFactory.createPost();
-  const bodyParams = {data: base64EncodedImage};
-  const urlParams = null;
-  const headers = {};
-
-  return POST(endpoint, bodyParams, urlParams, headers);
 };
