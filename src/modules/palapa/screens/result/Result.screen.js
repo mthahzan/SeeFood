@@ -1,22 +1,18 @@
 // @flow
 import React from 'react';
+import {Text, View, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import type {Element as ReactElement} from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Switch } from 'react-native';
-import { RNCamera } from 'react-native-camera';
-import  LinearGradient  from 'react-native-linear-gradient';
- 
 
-import {ActivityIndicatorOverlayComponent} from '../../../../shared/components';
+import {checkPalapaOfMyLife, checkPalapaOfMyLifeSuccess, checkPalapaOfMyLifeFailure} from '../../../../api/Palapa';
+import {ActivityIndicatorOverlayComponent, IcomoonIconComponent} from '../../../../shared/components';
 
 import styles from './Result.styles';
-import IcomoonComponent from '../../../../shared/components/icomoonIcon/IcomoonIcon.component';
 
-type ResultProps = {};
-type ResultState = {
-  camFlash: bool,
-  waitingForData: bool,
+type ResultProps = {
+  navigation: any,
 };
+type ResultState = {};
 
 class ResultScreen extends React.PureComponent<ResultProps, ResultState> {
   static defaultProps: any
@@ -25,8 +21,26 @@ class ResultScreen extends React.PureComponent<ResultProps, ResultState> {
     super(props);
 
     this.state = {
-
+      image: props.navigation.state.params.image,
+      waitingForData: false,
+      result: null,
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      waitingForData: true,
+    });
+    this.resolvePalapa(this.state.image);
+  }
+
+  resolvePalapa = async (image: string): Promise<void> => {
+    const result = await checkPalapaOfMyLifeSuccess();
+
+    this.setState({
+      waitingForData: false,
+      result,
+    });
   }
 
   renderActivityIndicator = (): ReactElement<any> => {
@@ -36,9 +50,13 @@ class ResultScreen extends React.PureComponent<ResultProps, ResultState> {
   }
 
   renderContent = (): ReactElement<any> => {
+    const {image} = this.props.navigation.state.params;
+    const source = {uri: `data:image/png;base64,${image}`};
+
     return (
       <View style={styles.container}>
-        
+        {this.renderActivityIndicator()}
+        <Image style={styles.imageBackground} scaleMode="contain" source={source} />
       </View>
     );
   }
@@ -48,11 +66,11 @@ class ResultScreen extends React.PureComponent<ResultProps, ResultState> {
 
     return content;
   }
-
-
 }
 
-ResultScreen.propTypes = {};
+ResultScreen.propTypes = {
+  navigation: PropTypes.any.isRequired,
+};
 
 ResultScreen.defaultProps = {};
 

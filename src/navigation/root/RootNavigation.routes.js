@@ -8,7 +8,7 @@ export const ROOT_NAV_PALAPA = 'PalapaScreen';
 export const ROOT_NAV_ABOUT = 'About';
 export const ROOT_NAV_RESULT= 'ResultScreen';
 export const ROOT_NAV_PRORESULT= 'ProResultScreen';
-
+ 
 export default {
   [ROOT_NAV_PRORESULT]: {
     screen: ProResultScreen,
