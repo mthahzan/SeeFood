@@ -11,7 +11,7 @@ type AppState = {};
 
 class AppComponent extends React.PureComponent<AppProps, AppState> {
   static defaultProps: any
-
+  
   constructor(props: AppProps) {
     super(props);
   }
