@@ -20,6 +20,7 @@ const style = StyleSheet.create({
     paddingHorizontal: 20,
     alignSelf: 'center',
     margin: 20,
+    borderRadius:200
   },
   flashContainer: {
     flex:1,
@@ -27,6 +28,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     justifyContent: 'center',
+    zIndex:100
   }
 });
 
