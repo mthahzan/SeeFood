@@ -13,3 +13,27 @@ export const checkPalapaOfMyLife = (base64EncodedImage: string): Promise<any> =>
 
   return POST(endpoint, bodyParams, urlParams, headers);
 };
+
+export const checkPalapaOfMyLifeSuccess = (): Promise<any> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        hotdog: true,
+      });
+    }, 1000);
+  });
+};
+
+export const checkPalapaOfMyLifeFailure = (): Promise<any> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        hotdog: false,
+        result: {
+          description: 'Ammage Redda',
+          score: 0.67,
+        }
+      });
+    }, 1000);
+  });
+};
