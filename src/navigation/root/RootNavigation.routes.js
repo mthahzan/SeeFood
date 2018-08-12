@@ -5,7 +5,7 @@ import ResultScreen from '../../modules/palapa/screens/result/Result.screen';
 
 export const ROOT_NAV_PALAPA = 'PalapaScreen';
 export const ROOT_NAV_ABOUT = 'About';
-export const ROOT_NAV_RESULT= 'ResultScreen';
+export const ROOT_NAV_RESULT = 'ResultScreen';
 
 export default {
   [ROOT_NAV_PALAPA]: {

@@ -2,7 +2,7 @@
 import {POST} from './Core';
 
 const urlFactory = {
-  checkPalapaOfMyLife = () => `/notdog/is-this-the-palapa-of-your-life`,
+  checkPalapaOfMyLife: () => `/notdog/is-this-the-palapa-of-your-life`,
 };
 
 export const checkPalapaOfMyLife = (base64EncodedImage: string): Promise<any> => {
