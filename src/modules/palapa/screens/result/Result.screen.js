@@ -4,6 +4,7 @@ import {Text, View, Image} from 'react-native';
 import PropTypes from 'prop-types';
 import type {Element as ReactElement} from 'react';
 
+import {NavigateToProResultsScreen} from '../../../../navigation/root/RootNavigation.actions';
 import {checkPalapaOfMyLife, checkPalapaOfMyLifeSuccess, checkPalapaOfMyLifeFailure} from '../../../../api/Palapa';
 import {ActivityIndicatorOverlayComponent, IcomoonIconComponent} from '../../../../shared/components';
 
@@ -35,12 +36,9 @@ class ResultScreen extends React.PureComponent<ResultProps, ResultState> {
   }
 
   resolvePalapa = async (image: string): Promise<void> => {
-    const result = await checkPalapaOfMyLifeSuccess();
+    const result = await checkPalapaOfMyLifeFailure();
 
-    this.setState({
-      waitingForData: false,
-      result,
-    });
+    NavigateToProResultsScreen(this.props.navigation, {response: result, image: this.state.image});
   }
 
   renderActivityIndicator = (): ReactElement<any> => {

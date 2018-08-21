@@ -21,10 +21,13 @@ class ProResultScreen extends React.PureComponent<ProResultProps, ProResultState
   constructor(props: ProResultProps) {
     super(props);
 
+    const {response: {hotdog, result}, image} = props.navigation.state.params;
+
     this.state = {
-      status: 'HOT DAWG!',
-      probability: '90%',
-      description: 'Congratz you found a hot dog!',
+      image,
+      status: hotdog ? 'HOT DAWG!' : 'Not Hot Dog :(',
+      probability: hotdog ? '100%' : `${parseInt(result.score * 100)}%`,
+      description: hotdog ? 'Congratz you found a hot dog!' : `This is ${result.description}`,
     }
   }
 
@@ -34,7 +37,7 @@ class ProResultScreen extends React.PureComponent<ProResultProps, ProResultState
       <View style={styles.container}>
         <Image
           style={{flex:1}}
-          source={{uri: 'https://cdn.vox-cdn.com/thumbor/ZiIEB5V3hwxD0CywVPJJkJXFX3c=/0x0:1061x773/1820x1213/filters:focal(447x303:615x471):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/59430399/grpizza.1524049998.png'}}
+          source={{uri: `data:image/png;base64,${this.state.image}`}}
         />
         <View
           style={{flex:1}}
@@ -44,9 +47,6 @@ class ProResultScreen extends React.PureComponent<ProResultProps, ProResultState
           <Text style={{fontSize:35}}>{this.state.status}</Text>
           <Text style={{fontSize:25}}>{this.state.probability}</Text>
           <Text style={{fontSize:15, marginTop:20, marginBottom:40, }}>{this.state.description}</Text>
-          <TouchableOpacity style={{padding:10, backgroundColor:'#45c', borderRadius: 5}}  onPress={this.goBack} >
-            <Text style={{color: 'white'}}> Okay</Text>
-          </TouchableOpacity>
         </View>
       </View>
     );
